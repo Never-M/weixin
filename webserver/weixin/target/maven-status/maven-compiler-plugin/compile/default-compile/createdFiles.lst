@@ -4,4 +4,5 @@ weixin\entity\Message.class
 weixin\Application.class
 weixin\controller\HomeController.class
 weixin\controller\UserController.class
+weixin\controller\UserController$UserLoginRequest.class
 weixin\entity\Person.class

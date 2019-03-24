@@ -2,8 +2,11 @@ package weixin.controller;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import lombok.Data;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,7 +45,7 @@ public class UserController {
                         throw new Exception("This person is already exsit");
                 }
                 Person p = new Person(request.getUserName(),
-                                      request.getPassword(),
+                                      BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()),
                                       new Date(),
                                       null);
                 personRepo.save(p);
@@ -64,9 +67,9 @@ public class UserController {
                 if (!temp.isPresent()) {
                         throw new Exception("This person does not exsit");
                 }
-                String pw = request.getPassword();
+                String requestPw = request.getPassword();
                 String temppw = personRepo.getByUserName(request.getUserName());
-                if (!pw.equals(temppw)) {
+                if (!BCrypt.checkpw(requestPw, temppw)) {
                         throw new Exception("Wrong password");
                 }
         }
