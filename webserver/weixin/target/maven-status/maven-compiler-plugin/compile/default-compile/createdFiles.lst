@@ -1,0 +1,5 @@
+weixin\dao\PersonRepository.class
+weixin\entity\Message.class
+weixin\Application.class
+weixin\entity\Person.class
+weixin\controller\HomeController.class
