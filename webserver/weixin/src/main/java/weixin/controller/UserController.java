@@ -53,6 +53,20 @@ public class UserController {
                     method = RequestMethod.PUT,
                     produces = {"application/json"})
     public void loginUser(@RequestBody UserCreationRequest request) throws Exception {
+        Optional<Person> temp = personRepo.findByUserName(request.getUserName());
+        if (temp.isPresent()){
+            String pw = request.getPassword();
+            String temppw = personRepo.getByUserName(request.getUserName());
+            if(pw.equals(temppw)){
+           
+            }
+            else{
+                throw new Exception("Wrong password");
+            }
+        }
+        else{
+            throw new Exception("This person does not exsit");
+        }
     }
     
     @RequestMapping(value = "user/{userId}", 
