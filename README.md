@@ -1,2 +1,2 @@
 # weixin
-an immediate chat application.
+An immediate chat application.
