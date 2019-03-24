@@ -21,64 +21,67 @@ import weixin.entity.Person;
 @RestController
 public class UserController {
 
-    @Autowired
-    private PersonRepository personRepo;
+        @Autowired
+        private PersonRepository personRepo;
 
-    @Data
-    public static class UserCreationRequest implements Serializable {
+        @Data
+        public static class UserCreationRequest implements Serializable {
 
-        private String userName;
-        private String password;
+                private String userName;
+                private String password;
 
-    }
-
-    @RequestMapping(value = "user/create",
-                    method = RequestMethod.POST,
-                    produces = {"application/json"})
-    public void createUser(@RequestBody UserCreationRequest request) throws Exception {
-
-        Optional<Person> temp = personRepo.findByUserName(request.getUserName());
-        if (temp.isPresent()) {
-            throw new Exception("This person is already exsit");
-        } else {
-            Person p = new Person(request.getUserName(),
-                                  request.getPassword(),
-                                  new Date(),
-                                  null);
-            personRepo.save(p);
         }
-    }
 
-    @RequestMapping(value = "user/login",
-                    method = RequestMethod.PUT,
-                    produces = {"application/json"})
-    public void loginUser(@RequestBody UserCreationRequest request) throws Exception {
-        Optional<Person> temp = personRepo.findByUserName(request.getUserName());
-        if (temp.isPresent()){
-            String pw = request.getPassword();
-            String temppw = personRepo.getByUserName(request.getUserName());
-            if(pw.equals(temppw)){
-           
-            }
-            else{
-                throw new Exception("Wrong password");
-            }
+        @RequestMapping(value = "user/create",
+                        method = RequestMethod.POST,
+                        produces = {"application/json"})
+        public void createUser(@RequestBody UserCreationRequest request) throws Exception {
+
+                Optional<Person> temp = personRepo.findByUserName(request.getUserName());
+                if (temp.isPresent()) {
+                        throw new Exception("This person is already exsit");
+                }
+                Person p = new Person(request.getUserName(),
+                                      request.getPassword(),
+                                      new Date(),
+                                      null);
+                personRepo.save(p);
         }
-        else{
-            throw new Exception("This person does not exsit");
+
+        @Data
+        public static class UserLoginRequest implements Serializable {
+
+                private String userName;
+                private String password;
+
         }
-    }
-    
-    @RequestMapping(value = "user/{userId}", 
-                    method = RequestMethod.GET,
-                    produces = {"application/json"})
-    @ResponseBody
-    public Person me(@PathVariable("userId") Long userId) throws Exception {
-        Optional<Person> foundPerson = personRepo.findById(userId);
-        
-        if (foundPerson.isPresent())
-            return foundPerson.get();
-        else
-            throw new Exception("User with id " + userId + " does not exist.");
-    }
+
+        @RequestMapping(value = "user/login",
+                        method = RequestMethod.PUT,
+                        produces = {"application/json"})
+        public void loginUser(@RequestBody UserLoginRequest request) throws Exception {
+                Optional<Person> temp = personRepo.findByUserName(request.getUserName());
+                if (!temp.isPresent()) {
+                        throw new Exception("This person does not exsit");
+                }
+                String pw = request.getPassword();
+                String temppw = personRepo.getByUserName(request.getUserName());
+                if (!pw.equals(temppw)) {
+                        throw new Exception("Wrong password");
+                }
+        }
+
+        @RequestMapping(value = "user/{userId}",
+                        method = RequestMethod.GET,
+                        produces = {"application/json"})
+        @ResponseBody
+        public Person me(@PathVariable("userId") Long userId) throws Exception {
+                Optional<Person> foundPerson = personRepo.findById(userId);
+
+                if (foundPerson.isPresent()) {
+                        return foundPerson.get();
+                } else {
+                        throw new Exception("User with id " + userId + " does not exist.");
+                }
+        }
 }

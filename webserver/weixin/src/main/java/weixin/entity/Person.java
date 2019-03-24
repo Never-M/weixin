@@ -20,34 +20,34 @@ import lombok.Data;
 @Table(name = "person")
 public class Person implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id")
+        private Long id;
 
-    @Column(name = "user_name")
-    private String userName;
+        @Column(name = "user_name")
+        private String userName;
 
-    @Column(name = "password")
-    private String password;
+        @Column(name = "password")
+        private String password;
 
-    @Column(name = "created_at")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date createdAt;
+        @Column(name = "created_at")
+        @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+        private Date createdAt;
 
-    @Column(name = "alias")
-    private String alias;
+        @Column(name = "alias")
+        private String alias;
 
-    public Person() {
-    }
-    
-    public Person(String userName,
-                  String password,
-                  Date createdAt,
-                  String alias) {
-        this.userName = userName;
-        this.password = password;
-        this.createdAt = createdAt;
-        this.alias = alias;
-    }
+        public Person() {
+        }
+
+        public Person(String userName,
+                      String password,
+                      Date createdAt,
+                      String alias) {
+                this.userName = userName;
+                this.password = password;
+                this.createdAt = createdAt;
+                this.alias = alias;
+        }
 }

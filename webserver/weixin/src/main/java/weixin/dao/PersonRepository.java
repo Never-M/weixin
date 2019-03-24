@@ -14,8 +14,9 @@ import weixin.entity.Person;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
-    @Query(value = "select * from person where user_name = :userName", nativeQuery = true)
-    public Optional<Person> findByUserName(@Param("userName") String userName);
-    @Query(value = "select password from person where user_name = :userName", nativeQuery = true)
-    public String getByUserName(@Param("userName") String userName);
+        @Query(value = "select * from person where user_name = :userName", nativeQuery = true)
+        public Optional<Person> findByUserName(@Param("userName") String userName);
+
+        @Query(value = "select password from person where user_name = :userName", nativeQuery = true)
+        public String getByUserName(@Param("userName") String userName);
 }
