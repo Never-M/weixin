@@ -26,6 +26,7 @@ public class UserController {
     @ResponseBody
     public Person me(@PathVariable("userId") Long userId) throws Exception {
         Optional<Person> foundPerson = personRepo.findById(userId);
+        
         if (foundPerson.isPresent())
             return foundPerson.get();
         else
