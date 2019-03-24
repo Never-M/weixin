@@ -1,5 +1,7 @@
+weixin\controller\UserController$UserCreationRequest.class
 weixin\dao\PersonRepository.class
 weixin\entity\Message.class
 weixin\Application.class
-weixin\entity\Person.class
 weixin\controller\HomeController.class
+weixin\controller\UserController.class
+weixin\entity\Person.class
