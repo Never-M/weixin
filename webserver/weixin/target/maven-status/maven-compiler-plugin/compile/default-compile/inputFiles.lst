@@ -3,4 +3,7 @@ C:\Users\zjz20\weixin\webserver\weixin\src\main\java\weixin\Application.java
 C:\Users\zjz20\weixin\webserver\weixin\src\main\java\weixin\entity\Person.java
 C:\Users\zjz20\weixin\webserver\weixin\src\main\java\weixin\dao\PersonRepository.java
 C:\Users\zjz20\weixin\webserver\weixin\src\main\java\weixin\entity\Message.java
+C:\Users\zjz20\weixin\webserver\weixin\src\main\java\weixin\controller\FriendshipController.java
 C:\Users\zjz20\weixin\webserver\weixin\src\main\java\weixin\controller\UserController.java
+C:\Users\zjz20\weixin\webserver\weixin\src\main\java\weixin\dao\UserHasFriendRepository.java
+C:\Users\zjz20\weixin\webserver\weixin\src\main\java\weixin\entity\UserHasFriend.java

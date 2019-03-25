@@ -2,9 +2,7 @@ package weixin.controller;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import lombok.Data;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,9 +60,9 @@ public class UserController {
         @RequestMapping(value = "user/login",
                         method = RequestMethod.PUT,
                         produces = {"application/json"})
-        public void loginUser(@RequestBody UserLoginRequest request) throws Exception {
-                Optional<Person> temp = personRepo.findByUserName(request.getUserName());
-                if (!temp.isPresent()) {
+        public Person loginUser(@RequestBody UserLoginRequest request) throws Exception {
+                Optional<Person> me = personRepo.findByUserName(request.getUserName());
+                if (!me.isPresent()) {
                         throw new Exception("This person does not exsit");
                 }
                 String requestPw = request.getPassword();
@@ -72,6 +70,7 @@ public class UserController {
                 if (!BCrypt.checkpw(requestPw, temppw)) {
                         throw new Exception("Wrong password");
                 }
+                return me.get();
         }
 
         @RequestMapping(value = "user/{userId}",

@@ -1,8 +1,13 @@
-weixin\controller\UserController$UserCreationRequest.class
 weixin\dao\PersonRepository.class
 weixin\entity\Message.class
 weixin\Application.class
-weixin\controller\HomeController.class
+weixin\entity\UserHasFriend.class
 weixin\controller\UserController.class
+weixin\controller\FriendshipController.class
+weixin\controller\UserController$UserCreationRequest.class
+weixin\entity\UserHasFriend$Id.class
+weixin\controller\HomeController.class
+weixin\controller\FriendshipController$UserAddFriend.class
 weixin\controller\UserController$UserLoginRequest.class
+weixin\dao\UserHasFriendRepository.class
 weixin\entity\Person.class
